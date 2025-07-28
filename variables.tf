@@ -1,7 +1,18 @@
-variable "bucket_name" {
-  type        = string
-  description = "S3 bucket name"
+variable "instance_count" {
+  type        = number
+  default     = 1
 }
+
+variable "bucket_count" {
+  type        = number
+  default     = 1
+}
+
+variable "bucket_name_prefix" {
+  type        = string
+  default     = "my-demo-bucket"
+}
+
 
 variable "ami_id" {
   type        = string
