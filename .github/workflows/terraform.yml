@@ -9,6 +9,7 @@ on:
 jobs:
   terraform:
     runs-on: ubuntu-latest
+    environment: AWS 
     defaults:
       run:
         working-directory: terraform  
@@ -28,8 +29,10 @@ jobs:
 
       - name: Terraform Init
         run: terraform init
+        
       - name: Terraform Format (auto-fix)
         run: terraform fmt -recursive
+        
       - name: Terraform Format
         run: terraform fmt -check
 
