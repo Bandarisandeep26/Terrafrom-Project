@@ -4,7 +4,7 @@ provider "aws" {
 
 module "vpc" {
   source     = "git::https://github.com/Bandarisandeep26/Terraform-Modules.git//modules/vpc?ref=main"
-  vpc_cidr = var.vpc_cidr
+  vpc_cidr   = var.vpc_cidr
   name       = var.vpc_name
   public_subnet_cidrs = var.public_subnet_cidrs
   azs                 = var.azs
@@ -12,7 +12,7 @@ module "vpc" {
 
 resource "aws_subnet" "public" {
   count             = length(var.public_subnet_cidrs)
-  vpc_id            = aws_vpc.this.id
+  vpc_id            = module.vpc.vpc_id
   cidr_block        = var.public_subnet_cidrs[count.index]
   availability_zone = element(var.azs, count.index)
   map_public_ip_on_launch = true
@@ -34,10 +34,10 @@ module "web_sg" {
 }
 
 module "s3" {
-  source      = "git::https://github.com/Bandarisandeep26/Terraform-Modules.git//modules/s3?ref=main" 
-  bucket_count      = var.bucket_count
-  bucket_name_prefix = var.bucket_name_prefix
-  tags        = var.tags
+  source              = "git::https://github.com/Bandarisandeep26/Terraform-Modules.git//modules/s3?ref=main" 
+  bucket_count        = var.bucket_count
+  bucket_name_prefix  = var.bucket_name_prefix
+  tags                = var.tags
 }
 
 module "ec2" {
