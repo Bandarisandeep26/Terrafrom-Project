@@ -9,3 +9,7 @@ output "ec2_instance_ids" {
 output "ec2_public_ips" {
   value = module.ec2.public_ips
 }
+
+output "public_subnet_ids" {
+  value = aws_subnet.public[*].id
+}
