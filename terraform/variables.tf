@@ -1,3 +1,35 @@
+variable "vpc_cidr" {
+  description = "CIDR block for the VPC"
+  type        = string
+}
+
+variable "vpc_name" {
+  description = "Name tag for the VPC"
+  type        = string
+}
+
+variable "ingress_rules" {
+  description = "List of ingress rules for the SG"
+  type = list(object({
+    description = optional(string)
+    from_port   = number
+    to_port     = number
+    protocol    = string
+    cidr_blocks = list(string)
+  }))
+}
+
+variable "egress_rules" {
+  description = "List of egress rules for the SG"
+  type = list(object({
+    description = optional(string)
+    from_port   = number
+    to_port     = number
+    protocol    = string
+    cidr_blocks = list(string)
+  }))
+}
+
 variable "bucket_count" {
   description = "Number of S3 buckets to create"
   type        = number
