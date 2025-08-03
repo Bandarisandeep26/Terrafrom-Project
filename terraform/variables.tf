@@ -8,6 +8,14 @@ variable "vpc_name" {
   type        = string
 }
 
+variable "azs" {
+  type = list(string)
+}
+
+variable "public_subnet_cidrs" {
+  type = list(string)
+}
+
 variable "ingress_rules" {
   description = "List of ingress rules for the SG"
   type = list(object({
