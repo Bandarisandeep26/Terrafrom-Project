@@ -40,14 +40,14 @@ jobs:
         run: terraform validate
 
       - name: Terraform Plan
-#       run: terraform plan -out=tfplan
+        run: terraform plan -out=tfplan
 #        run: terraform plan -out=tfplan -input=false -lock-timeout=60s
-        run: terraform plan -destroy -out=tfplan 
+#        run: terraform plan -destroy -out=tfplan 
 
 
-      - name: Terraform Apply
-        if: github.ref == 'refs/heads/main'
-        run: terraform apply -auto-approve tfplan
+#      - name: Terraform Apply
+#        if: github.ref == 'refs/heads/main'
+#       run: terraform apply -auto-approve tfplan
         
 
 
