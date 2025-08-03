@@ -10,6 +10,19 @@ module "vpc" {
   azs                 = var.azs
 }
 
+resource "aws_subnet" "public" {
+  count             = length(var.public_subnet_cidrs)
+  vpc_id            = aws_vpc.this.id
+  cidr_block        = var.public_subnet_cidrs[count.index]
+  availability_zone = element(var.azs, count.index)
+  map_public_ip_on_launch = true
+
+  tags = {
+    Name = "public-subnet-${count.index}"
+  }
+}
+
+
 module "web_sg" {
   source      = "git::https://github.com/Bandarisandeep26/Terraform-Modules.git//modules/security-group?ref=main"
   name        = "web-sg"
