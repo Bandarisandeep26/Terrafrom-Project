@@ -6,6 +6,8 @@ module "vpc" {
   source     = "git::https://github.com/Bandarisandeep26/Terraform-Modules.git//modules/vpc?ref=main"
   cidr_block = var.vpc_cidr
   name       = var.vpc_name
+  public_subnet_cidrs = var.public_subnet_cidrs
+  azs                 = var.azs
 }
 
 module "web_sg" {
